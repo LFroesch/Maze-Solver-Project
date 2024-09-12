@@ -1,8 +1,10 @@
 from tkinter import Tk, BOTH, Canvas
 import os
-
+import shared
+import sys
 
 class Window:
+    
     def __init__(self, width, height):
         self.__root = Tk()
         self.__root.title("Maze Solver 3000")
@@ -11,6 +13,10 @@ class Window:
         self.__canvas = Canvas(self.__root, bg="white", height=height, width=width)
         self.__canvas.pack(fill=BOTH, expand=1)
         self.__running = False
+
+    def bind_key(self, key, callback):
+        print(f"Binding key {key} to callback")
+        self.__root.bind(key, callback)
 
     def redraw(self):
         self.__root.update_idletasks()
@@ -38,6 +44,18 @@ class Window:
 
     def get_canvas(self):
         return self.__canvas
+    
+    def reset_canvas(self):
+        self.__canvas.delete("all")
+        print("Resetting Canvas")
+        shared.filled = False
+        print("Filled Set to False")
+        self.redraw()
+
+    def quit():
+        sys.exit()
+        
+
 
 class Point:
     def __init__(self, x, y):

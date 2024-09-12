@@ -85,7 +85,7 @@ class Maze:
                 next_index_list.append((i, j + 1))
 
             # if there is nowhere to go from here
-            # just break out
+            # break out
             if len(next_index_list) == 0:
                 self._draw_cell(i, j)
                 return
@@ -146,6 +146,7 @@ class Maze:
                 return True
             else:
                 self._cells[i][j].draw_move(self._cells[i - 1][j])
+                
             # move right if there is no wall and it hasn't been visited
         if (
             i < self._num_cols - 1
@@ -157,7 +158,7 @@ class Maze:
                 return True
             else:
                 self._cells[i][j].draw_move(self._cells[i + 1][j], True)
-
+                
         # move up if there is no wall and it hasn't been visited
         if (
             j > 0
@@ -169,7 +170,7 @@ class Maze:
                 return True
             else:
                 self._cells[i][j].draw_move(self._cells[i][j - 1], True)
-
+                
         # move down if there is no wall and it hasn't been visited
         if (
             j < self._num_rows - 1
@@ -181,9 +182,6 @@ class Maze:
                 return True
             else:
                 self._cells[i][j].draw_move(self._cells[i][j + 1], True)
-
+                
         # we went the wrong way let the previous cell know by returning False
         return False
-        
-    def reset_maze(self, ):
-        self.canvas.delete("all")  # This clears all items from a tkinter canvas
