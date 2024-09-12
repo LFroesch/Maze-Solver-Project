@@ -1,0 +1,5 @@
+# game loop?
+# main menu to change variables
+# ^ move variables to shared
+# a 2nd line in blue that is BFS 
+# make square game port

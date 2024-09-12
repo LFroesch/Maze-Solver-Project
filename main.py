@@ -5,7 +5,7 @@ import shared
 import time
 
 def regenerate_maze(num_rows, num_cols, margin, cell_size_x, cell_size_y, win=None):
-    start_time = time.time()
+    win.start_timer()
     print("--- Time Started ---")
     if not shared.filled:
         maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, 10)
@@ -17,6 +17,7 @@ def regenerate_maze(num_rows, num_cols, margin, cell_size_x, cell_size_y, win=No
         print("Maze Regenerated...")
 
     # Reset filled status
+    
     shared.filled = True
     #print("Filled Set to True")
 
@@ -25,8 +26,9 @@ def regenerate_maze(num_rows, num_cols, margin, cell_size_x, cell_size_y, win=No
     if not is_solvable:
         print("Maze cannot be solved!")
     else:
-        end_time = time.time()
-        elapsed_time = end_time - start_time
+        win.end_timer()
+        shared.solved = True
+        elapsed_time = shared.end_time - shared.start_time
         print("-------------------------------")
         print(f"- Maze solved in {elapsed_time:.2f} seconds!-")
         print("-      Press R to Reset       -")
@@ -35,13 +37,13 @@ def regenerate_maze(num_rows, num_cols, margin, cell_size_x, cell_size_y, win=No
 
 def main():
     
-    num_rows = 50
-    num_cols = 50
+    num_rows = 10
+    num_cols = 10
     margin = 50
     screen_x = 800
-    screen_y = 600
-    cell_size_x = (screen_x - 2 * margin) / num_cols
-    cell_size_y = (screen_y - 2 * margin) / num_rows
+    screen_y = 800
+    cell_size_x = (screen_x - 3 * margin) / num_cols
+    cell_size_y = (screen_y - 3 * margin) / num_rows
     sys.setrecursionlimit(10000)
     win = Window(screen_x, screen_y)
     canvas = win.get_canvas()
@@ -57,7 +59,7 @@ def main():
     win.bind_key('<r>', lambda event: regenerate_maze(num_rows, num_cols, margin, cell_size_x, cell_size_y, win))
     win.bind_key('<q>', lambda event: win.close())
 
-    win.wait_for_close()
+    win.run()
 
 if __name__ == "__main__":
     main()
