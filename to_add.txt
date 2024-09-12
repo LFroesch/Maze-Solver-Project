@@ -1,0 +1,5 @@
+# timer
+# quit func
+# game loop?
+# main menu to change variables
+# ^ move variables to shared

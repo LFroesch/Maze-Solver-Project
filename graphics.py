@@ -7,7 +7,7 @@ class Window:
     
     def __init__(self, width, height):
         self.__root = Tk()
-        self.__root.title("Maze Solver 3000")
+        self.__root.title('"The Maze Solver 3000"')
         self.__root.geometry(f"{width}x{height}+1920+0")
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
         self.__canvas = Canvas(self.__root, bg="white", height=height, width=width)
@@ -15,7 +15,7 @@ class Window:
         self.__running = False
 
     def bind_key(self, key, callback):
-        print(f"Binding key {key} to callback")
+        #print(f"Binding key {key} to callback")
         self.__root.bind(key, callback)
 
     def redraw(self):
@@ -33,7 +33,7 @@ class Window:
     def close(self):
         self.__running = False
         self.__root.destroy()
-        print("Window closed")
+        print("Window Closed")
 
     def run(self):
         self.__running = True
@@ -45,17 +45,15 @@ class Window:
     def get_canvas(self):
         return self.__canvas
     
+    def get_root(self):
+        return self.__root
+    
     def reset_canvas(self):
         self.__canvas.delete("all")
-        print("Resetting Canvas")
+        print("Resetting Maze")
         shared.filled = False
-        print("Filled Set to False")
+        #print("Filled Set to False")
         self.redraw()
-
-    def quit():
-        sys.exit()
-        
-
 
 class Point:
     def __init__(self, x, y):
