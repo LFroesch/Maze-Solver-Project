@@ -1,10 +1,12 @@
 from tkinter import Tk, BOTH, Canvas
+import os
 
 
 class Window:
     def __init__(self, width, height):
         self.__root = Tk()
         self.__root.title("Maze Solver 3000")
+        self.__root.geometry(f"{width}x{height}+1920+0")
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
         self.__canvas = Canvas(self.__root, bg="white", height=height, width=width)
         self.__canvas.pack(fill=BOTH, expand=1)
@@ -27,9 +29,15 @@ class Window:
         self.__root.destroy()
         print("Window closed")
 
+    def run(self):
+        self.__running = True
+        self.__root.mainloop()
+
     def get_title(self):
         return self.__root.title()
 
+    def get_canvas(self):
+        return self.__canvas
 
 class Point:
     def __init__(self, x, y):
